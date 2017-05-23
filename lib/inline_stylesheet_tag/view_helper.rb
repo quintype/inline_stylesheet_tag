@@ -9,7 +9,7 @@ module InlineStylesheetTag::ViewHelpers
     Rails.cache.fetch("inline-css-#{Digest::MD5.hexdigest(url)}", expires_in: 1.hour) do
       content = fetch_inline_stylesheet_tag(url) rescue nil
       if content.present?
-        content_tag(:style, content.html_safe, escape: false)
+        content_tag(:style, content.html_safe)
       else
         stylesheet_link_tag url, *more
       end
